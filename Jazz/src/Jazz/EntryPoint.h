@@ -2,8 +2,8 @@
 
 int main(int, char **) {
     Jazz::Log::Init();
-    Jazz::Log::GetCoreLogger()->warn("Initialized Log!");
-    Jazz::Log::GetClientLogger()->info("Hello Jazz!");
+    JZ_CORE_WARN("Initialized Log!");
+    JZ_INFO("Hello Jazz! Var={0}", 100500);
 
     auto app = Jazz::CreateApplication();
     app->Run();

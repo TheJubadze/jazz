@@ -11,7 +11,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC JazzEngine)
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
-if (MSVC)
+if (WIN32)
     add_compile_definitions(JZ_BUILD_DLL)
 else ()
 endif ()

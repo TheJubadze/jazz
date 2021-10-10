@@ -23,15 +23,15 @@ namespace Jazz {
 }
 
 // Core log macros
-#define JZ_CORE_TRACE(...)    ::Hazel::Log::GetCoreLogger()->trace(__VA_ARGS__)
-#define JZ_CORE_INFO(...)     ::Hazel::Log::GetCoreLogger()->info(__VA_ARGS__)
-#define JZ_CORE_WARN(...)     ::Hazel::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define JZ_CORE_ERROR(...)    ::Hazel::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define JZ_CORE_FATAL(...)    ::Hazel::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define JZ_CORE_TRACE(...)    ::Jazz::Log::GetCoreLogger()->trace(__VA_ARGS__)
+#define JZ_CORE_INFO(...)     ::Jazz::Log::GetCoreLogger()->info(__VA_ARGS__)
+#define JZ_CORE_WARN(...)     ::Jazz::Log::GetCoreLogger()->warn(__VA_ARGS__)
+#define JZ_CORE_ERROR(...)    ::Jazz::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define JZ_CORE_FATAL(...)    ::Jazz::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 
 // Client log macros
-#define JZ_TRACE(...)          ::Hazel::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define JZ_INFO(...)          ::Hazel::Log::GetClientLogger()->info(__VA_ARGS__)
-#define JZ_WARN(...)          ::Hazel::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define JZ_ERROR(...)          ::Hazel::Log::GetClientLogger()->error(__VA_ARGS__)
-#define JZ_FATAL(...)          ::Hazel::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define JZ_TRACE(...)          ::Jazz::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define JZ_INFO(...)          ::Jazz::Log::GetClientLogger()->info(__VA_ARGS__)
+#define JZ_WARN(...)          ::Jazz::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define JZ_ERROR(...)          ::Jazz::Log::GetClientLogger()->error(__VA_ARGS__)
+#define JZ_FATAL(...)          ::Jazz::Log::GetClientLogger()->fatal(__VA_ARGS__)
