@@ -1,7 +1,9 @@
 #pragma once
 
+#include "Core.h"
+
 namespace Jazz {
-    class Application {
+    class JAZZ_API Application {
     public:
         Application();
         virtual ~Application();

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.18 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.10...3.21 FATAL_ERROR)
 
 project(Jazz)
 
@@ -7,3 +7,8 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Build)
 
 add_subdirectory(Jazz)
 add_subdirectory(Sandbox)
+
+if (MSVC)
+    add_compile_definitions(JZ_PLATFORM_WINDOWS)
+else ()
+endif ()
