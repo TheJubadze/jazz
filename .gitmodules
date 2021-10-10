@@ -1,0 +1,6 @@
+[submodule "Jazz/vendor/spdlog"]
+	path = Jazz/vendor/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "Jazz/vendor/GLFW"]
+	path = Jazz/vendor/GLFW
+	url = https://github.com/glfw/glfw.git
