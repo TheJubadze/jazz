@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.18 FATAL_ERROR)
 
-project(jazz-project)
+project(Jazz)
 
-add_subdirectory(jazz/vendor/glad)
-add_subdirectory(jazz/vendor/GLFW)
-add_subdirectory(jazz/src)
-add_subdirectory(sandbox/src)
+set (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Build)
+set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Build)
+
+add_subdirectory(Jazz)
+add_subdirectory(Sandbox)
