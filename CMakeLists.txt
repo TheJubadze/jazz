@@ -7,8 +7,3 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Build)
 
 add_subdirectory(Jazz)
 add_subdirectory(Sandbox)
-
-if (WIN32)
-    add_compile_definitions(JZ_PLATFORM_WINDOWS)
-else ()
-endif ()
