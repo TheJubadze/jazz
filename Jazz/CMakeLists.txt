@@ -10,8 +10,12 @@ add_library(${PROJECT_NAME} SHARED
         src/Jazz/Log.cpp src/Jazz/Log.h)
 
 target_include_directories(${PROJECT_NAME}
-        PRIVATE
+        PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/vendor/spdlog/include
+        )
+
+target_include_directories(${PROJECT_NAME}
+        PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/vendor/GLFW/include
         )
 
