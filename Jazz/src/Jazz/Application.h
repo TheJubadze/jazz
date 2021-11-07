@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Jazz/Events/ApplicationEvent.h>
 #include "Core.h"
 #include "Events/Event.h"
 #include "Window.h"
@@ -9,8 +10,14 @@ namespace Jazz {
     public:
         Application();
         virtual ~Application();
-        [[noreturn]] [[noreturn]] void Run();
+
+        [[noreturn]] void Run();
+
+        void OnEvent(Event &);
+
     private:
+        bool OnWindowClose(WindowCloseEvent& e);
+
         std::unique_ptr<Window> m_Window;
         bool m_Running = true;
     };
