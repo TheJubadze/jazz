@@ -1,9 +1,10 @@
 #pragma once
 
-#include <Jazz/Events/ApplicationEvent.h>
 #include "Core.h"
+#include "Jazz/Events/ApplicationEvent.h"
 #include "Events/Event.h"
 #include "Window.h"
+#include "LayerStack.h"
 
 namespace Jazz {
     class JAZZ_API Application {
@@ -11,15 +12,18 @@ namespace Jazz {
         Application();
         virtual ~Application();
 
-        [[noreturn]] void Run();
+        void Run();
 
         void OnEvent(Event &);
 
+        void PushLayer(Layer* layer);
+        void PushOverlay(Layer* layer);
     private:
         bool OnWindowClose(WindowCloseEvent& e);
 
         std::unique_ptr<Window> m_Window;
         bool m_Running = true;
+        LayerStack m_LayerStack;
     };
 
     // To be defined in CLIENT

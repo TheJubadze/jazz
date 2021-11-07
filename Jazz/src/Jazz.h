@@ -3,6 +3,7 @@
 //For use by Jazz applications
 
 #include "Jazz/Application.h"
+#include "Jazz/Layer.h"
 #include "Jazz/Log.h"
 
 // ---Entry Point------------------------------

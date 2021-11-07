@@ -20,6 +20,8 @@ add_library(${PROJECT_NAME} SHARED
 
         src/Jazz/Application.cpp
         src/Jazz/Log.cpp
+        src/Jazz/Layer.cpp
+        src/Jazz/LayerStack.cpp
         src/Platform/Windows/WindowsWindow.cpp
         )
 
@@ -41,6 +43,7 @@ target_precompile_headers(${PROJECT_NAME} PUBLIC
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
 if (WIN32)
+    add_compile_options(/MD)
     add_compile_definitions(JZ_PLATFORM_WINDOWS)
     add_compile_definitions(JZ_BUILD_DLL)
 else ()
