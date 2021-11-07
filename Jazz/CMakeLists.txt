@@ -16,10 +16,14 @@ add_library(${PROJECT_NAME} SHARED
         src/Jazz/Events/ApplicationEvent.h
         src/Jazz/Events/KeyEvent.h
         src/Jazz/Events/MouseEvent.h
+        src/Jazz/Window.h
 
         src/Jazz/Application.cpp
         src/Jazz/Log.cpp
+        src/Platform/Windows/WindowsWindow.cpp
         )
+
+find_package(OpenGL REQUIRED)
 
 target_link_libraries(${PROJECT_NAME}
         ${OPENGL_LIBRARIES}
