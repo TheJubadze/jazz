@@ -1,5 +1,6 @@
 project(JazzEngine)
 
+add_subdirectory(vendor/imgui)
 add_subdirectory(vendor/Glad)
 
 add_subdirectory(vendor/GLFW)
@@ -22,7 +23,9 @@ add_library(${PROJECT_NAME} SHARED
         src/Jazz/Log.cpp
         src/Jazz/Layer.cpp
         src/Jazz/LayerStack.cpp
+        src/Jazz/ImGui/ImGuiLayer.cpp
         src/Platform/Windows/WindowsWindow.cpp
+        src/Platform/OpenGL/ImGuiOpenGLRenderer.cpp
         )
 
 find_package(OpenGL REQUIRED)
@@ -30,14 +33,16 @@ find_package(OpenGL REQUIRED)
 target_link_libraries(${PROJECT_NAME}
         ${OPENGL_LIBRARIES}
         glfw
-        Glad)
+        Glad
+        ImGui)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}
         ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_SOURCE_DIR}/vendor/GLFW/include
         ${CMAKE_CURRENT_SOURCE_DIR}/vendor/Glad/include
-        ${CMAKE_CURRENT_SOURCE_DIR}/vendor/spdlog/include)
+        ${CMAKE_CURRENT_SOURCE_DIR}/vendor/spdlog/include
+        )
 
 target_precompile_headers(${PROJECT_NAME} PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/src/jzpch.h)

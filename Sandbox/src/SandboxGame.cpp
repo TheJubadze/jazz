@@ -20,6 +20,7 @@ class Sandbox : public Jazz::Application {
 public:
     Sandbox() {
         PushLayer(new ExampleLayer());
+        PushOverlay(new Jazz::ImGuiLayer());
     }
 
     ~Sandbox() {};
