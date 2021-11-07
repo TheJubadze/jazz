@@ -1,6 +1,6 @@
 project(JazzEngine)
 
-#add_subdirectory(vendor/glad)
+add_subdirectory(vendor/Glad)
 
 add_subdirectory(vendor/GLFW)
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
@@ -29,12 +29,14 @@ find_package(OpenGL REQUIRED)
 
 target_link_libraries(${PROJECT_NAME}
         ${OPENGL_LIBRARIES}
-        glfw)
+        glfw
+        Glad)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}
         ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_SOURCE_DIR}/vendor/GLFW/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/vendor/Glad/include
         ${CMAKE_CURRENT_SOURCE_DIR}/vendor/spdlog/include)
 
 target_precompile_headers(${PROJECT_NAME} PUBLIC
