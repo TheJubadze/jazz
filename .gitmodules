@@ -4,6 +4,6 @@
 [submodule "Jazz/vendor/GLFW"]
 	path = Jazz/vendor/GLFW
 	url = https://github.com/glfw/glfw.git
-[submodule "Jazz\\vendor\\imgui\\imgui"]
-	path = Jazz\\vendor\\imgui\\imgui
+[submodule "Jazz/vendor/imgui/imgui"]
+	path = Jazz/vendor/imgui/imgui
 	url = https://github.com/ocornut/imgui.git
