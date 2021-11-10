@@ -10,8 +10,12 @@
     #define JAZZ_API
 #endif
 
+#ifdef JZ_DEBUG
+    #define JZ_ENABLE_ASSERTS
+#endif
+
 #ifdef JZ_ENABLE_ASSERTS
-#define JZ_ASSERT(x, ...) { if(!(x)) { JZ_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+    #define JZ_ASSERT(x, ...) { if(!(x)) { JZ_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
     #define JZ_CORE_ASSERT(x, ...) { if(!(x)) { JZ_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 #else
 #define JZ_ASSERT(x, ...)
