@@ -1,6 +1,8 @@
 #include "Application.h"
 #include <glad/glad.h>
 
+#include "Input.h"
+
 namespace Jazz {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
@@ -44,6 +46,9 @@ namespace Jazz {
 
             for (Layer *layer: m_LayerStack)
                 layer->OnUpdate();
+
+            auto[x, y] = Input::GetMousePosition();
+            JZ_CORE_TRACE("{} {}", x, y);
 
             m_Window->OnUpdate();
         }

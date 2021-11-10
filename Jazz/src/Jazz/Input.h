@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Hazel/Core.h"
+#include "Jazz/Core.h"
 
-namespace Hazel {
+namespace Jazz {
 
-	class HAZEL_API Input
+	class JAZZ_API Input
 	{
 	public:
 		inline static bool IsKeyPressed(int keycode) { return s_Instance->IsKeyPressedImpl(keycode); }

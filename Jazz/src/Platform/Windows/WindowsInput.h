@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Hazel/Input.h"
+#include "Jazz/Input.h"
 
-namespace Hazel {
+namespace Jazz {
 
 	class WindowsInput : public Input
 	{

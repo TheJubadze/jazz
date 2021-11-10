@@ -1,10 +1,9 @@
-#include "hzpch.h"
 #include "WindowsInput.h"
 
-#include "Hazel/Application.h"
+#include "Jazz/Application.h"
 #include <GLFW/glfw3.h>
 
-namespace Hazel {
+namespace Jazz {
 
 	Input* Input::s_Instance = new WindowsInput();
 

@@ -10,21 +10,13 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(GLFW_INSTALL OFF CACHE BOOL "GLFW lib only")
 
 add_library(${PROJECT_NAME} SHARED
-        src/jzpch.h
-        src/Jazz/Core.h
-        src/Jazz/EntryPoint.h
-        src/Jazz/Events/Event.h
-        src/Jazz/Events/ApplicationEvent.h
-        src/Jazz/Events/KeyEvent.h
-        src/Jazz/Events/MouseEvent.h
-        src/Jazz/Window.h
-
         src/Jazz/Application.cpp
         src/Jazz/Log.cpp
         src/Jazz/Layer.cpp
         src/Jazz/LayerStack.cpp
         src/Jazz/ImGui/ImGuiLayer.cpp
         src/Platform/Windows/WindowsWindow.cpp
+        src/Platform/Windows/WindowsInput.cpp
         src/Platform/OpenGL/ImGuiOpenGLRenderer.cpp
         )
 
