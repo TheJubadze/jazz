@@ -2,6 +2,7 @@ project(JazzEngine)
 
 add_subdirectory(vendor/imgui)
 add_subdirectory(vendor/Glad)
+add_subdirectory(vendor/glm)
 
 add_subdirectory(vendor/GLFW)
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
@@ -26,7 +27,8 @@ target_link_libraries(${PROJECT_NAME}
         ${OPENGL_LIBRARIES}
         glfw
         Glad
-        ImGui)
+        ImGui
+        glm)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}
@@ -34,6 +36,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/vendor/GLFW/include
         ${CMAKE_CURRENT_SOURCE_DIR}/vendor/Glad/include
         ${CMAKE_CURRENT_SOURCE_DIR}/vendor/spdlog/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/vendor/glm/glm
         )
 
 target_precompile_headers(${PROJECT_NAME} PUBLIC

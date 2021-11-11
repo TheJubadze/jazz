@@ -7,3 +7,6 @@
 [submodule "Jazz/vendor/imgui/imgui"]
 	path = Jazz/vendor/imgui/imgui
 	url = https://github.com/ocornut/imgui.git
+[submodule "Jazz/vendor/glm"]
+	path = Jazz/vendor/glm
+	url = https://github.com/g-truc/glm.git
