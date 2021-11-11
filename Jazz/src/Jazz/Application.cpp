@@ -47,9 +47,6 @@ namespace Jazz {
             for (Layer *layer: m_LayerStack)
                 layer->OnUpdate();
 
-            auto[x, y] = Input::GetMousePosition();
-            JZ_CORE_TRACE("{} {}", x, y);
-
             m_Window->OnUpdate();
         }
     }

@@ -7,11 +7,18 @@ public:
     }
 
     void OnUpdate() override {
-        JZ_INFO("ExampleLayer::Update");
+        if (Jazz::Input::IsKeyPressed(JZ_KEY_TAB))
+            JZ_TRACE("Tab key is pressed (poll)!");
     }
 
     void OnEvent(Jazz::Event &event) override {
-        JZ_TRACE("{0}", event);
+        if (event.GetEventType() == Jazz::EventType::KeyPressed)
+        {
+            Jazz::KeyPressedEvent& e = (Jazz::KeyPressedEvent&)event;
+            if (e.GetKeyCode() == JZ_KEY_TAB)
+                JZ_TRACE("Tab key is pressed (event)!");
+            JZ_TRACE("{0}", (char)e.GetKeyCode());
+        }
     }
 
 };
