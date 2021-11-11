@@ -15,10 +15,10 @@ add_library(${PROJECT_NAME} SHARED
         src/Jazz/Log.cpp
         src/Jazz/Layer.cpp
         src/Jazz/LayerStack.cpp
+        src/Jazz/ImGui/ImGuiBuild.cpp
         src/Jazz/ImGui/ImGuiLayer.cpp
         src/Platform/Windows/WindowsWindow.cpp
         src/Platform/Windows/WindowsInput.cpp
-        src/Platform/OpenGL/ImGuiOpenGLRenderer.cpp
         )
 
 find_package(OpenGL REQUIRED)
@@ -37,6 +37,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/vendor/Glad/include
         ${CMAKE_CURRENT_SOURCE_DIR}/vendor/spdlog/include
         ${CMAKE_CURRENT_SOURCE_DIR}/vendor/glm/glm
+        ${CMAKE_CURRENT_SOURCE_DIR}/vendor/imgui/imgui
         )
 
 target_precompile_headers(${PROJECT_NAME} PUBLIC

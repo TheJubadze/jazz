@@ -1,4 +1,5 @@
 #include <Jazz.h>
+#include <imgui.h>
 
 class ExampleLayer : public Jazz::Layer {
 public:
@@ -21,13 +22,18 @@ public:
         }
     }
 
+//    void OnImGuiRender() override{
+//        ImGui::Begin("Test");
+//        ImGui::Text("Hello ImGui!");
+//        ImGui::End();
+//    }
+
 };
 
 class Sandbox : public Jazz::Application {
 public:
     Sandbox() {
         PushLayer(new ExampleLayer());
-        PushOverlay(new Jazz::ImGuiLayer());
     }
 
     ~Sandbox() {};
