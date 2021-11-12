@@ -14,12 +14,15 @@ namespace Jazz {
 
         virtual void OnAttach() override;
         virtual void OnDetach() override;
-        virtual void OnImGuiRender() override;
+        virtual void OnImGuiRender(ImGuiContext *) override;
+
+        ImGuiContext *GetCurrentImGuiContext() { return m_imGuiContext; }
 
         void Begin();
         void End();
     private:
         float m_Time = 0.0f;
+        ImGuiContext *m_imGuiContext;
     };
 
 

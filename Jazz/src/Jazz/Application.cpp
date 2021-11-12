@@ -1,8 +1,6 @@
 #include "Application.h"
 #include <glad/glad.h>
 
-#include "Input.h"
-
 namespace Jazz {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
@@ -52,7 +50,7 @@ namespace Jazz {
 
             m_ImGuiLayer->Begin();
             for (Layer* layer : m_LayerStack)
-                layer->OnImGuiRender();
+                layer->OnImGuiRender(m_ImGuiLayer->GetCurrentImGuiContext());
             m_ImGuiLayer->End();
 
             m_Window->OnUpdate();

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <imgui_internal.h>
 #include "Jazz/Core.h"
 #include "Jazz/Events/Event.h"
 
@@ -13,7 +14,7 @@ namespace Jazz {
         virtual void OnAttach() {}
         virtual void OnDetach() {}
         virtual void OnUpdate() {}
-        virtual void OnImGuiRender() {}
+        virtual void OnImGuiRender(ImGuiContext *context = nullptr) {}
         virtual void OnEvent(Event &event) {}
 
         inline const std::string &GetName() const { return m_DebugName; }

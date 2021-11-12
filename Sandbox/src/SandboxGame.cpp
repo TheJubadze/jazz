@@ -22,11 +22,12 @@ public:
         }
     }
 
-//    void OnImGuiRender() override{
-//        ImGui::Begin("Test");
-//        ImGui::Text("Hello ImGui!");
-//        ImGui::End();
-//    }
+    void OnImGuiRender(ImGuiContext *context) override{
+        ImGui::SetCurrentContext(context);
+        ImGui::Begin("Test");
+        ImGui::Text("Hello ImGui!");
+        ImGui::End();
+    }
 
 };
 
