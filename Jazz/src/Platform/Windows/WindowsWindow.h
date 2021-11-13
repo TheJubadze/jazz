@@ -3,6 +3,7 @@
 #include "Jazz/Window.h"
 
 #include <GLFW/glfw3.h>
+#include <Jazz/Renderer/GraphicsContext.h>
 
 namespace Jazz {
 
@@ -27,6 +28,7 @@ namespace Jazz {
         virtual void Shutdown();
 
         GLFWwindow *m_Window;
+        GraphicsContext* m_Context;
 
         struct WindowData {
             std::string Title;
