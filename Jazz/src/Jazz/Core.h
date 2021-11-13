@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef JZ_PLATFORM_WINDOWS
-#ifdef JZ_BUILD_DLL
-    #define JAZZ_API __declspec(dllexport)
-#else
-    #define JAZZ_API __declspec(dllimport)
-#endif
+    #if JZ_DYNAMIC_LINK
+        #ifdef JZ_BUILD_DLL
+            #define JAZZ_API __declspec(dllexport)
+        #else
+            #define JAZZ_API __declspec(dllimport)
+        #endif
+    #else
+        #define JAZZ_API
+    #endif
 #else
     #define JAZZ_API
 #endif

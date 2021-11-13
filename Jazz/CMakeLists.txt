@@ -10,7 +10,7 @@ set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(GLFW_INSTALL OFF CACHE BOOL "GLFW lib only")
 
-add_library(${PROJECT_NAME} SHARED
+add_library(${PROJECT_NAME} STATIC
         src/Jazz/Application.cpp
         src/Jazz/Log.cpp
         src/Jazz/Layer.cpp
@@ -49,5 +49,12 @@ if (WIN32)
     add_compile_options(/MD)
     add_compile_definitions(JZ_PLATFORM_WINDOWS)
     add_compile_definitions(JZ_BUILD_DLL)
+    add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
 else ()
+endif ()
+
+if (MSVC)
+    target_compile_options(${PROJECT_NAME} PUBLIC /W3)
+else ()
+    target_compile_options(${PROJECT_NAME} PUBLIC -Wall)
 endif ()

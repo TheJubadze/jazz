@@ -50,14 +50,14 @@ namespace Jazz {
 
             m_ImGuiLayer->Begin();
             for (Layer* layer : m_LayerStack)
-                layer->OnImGuiRender(m_ImGuiLayer->GetCurrentImGuiContext());
+                layer->OnImGuiRender();
             m_ImGuiLayer->End();
 
             m_Window->OnUpdate();
         }
     }
 
-    bool Application::OnWindowClose(WindowCloseEvent &e) {
+    bool Application::OnWindowClose(WindowCloseEvent &) {
         m_Running = false;
         return true;
     }

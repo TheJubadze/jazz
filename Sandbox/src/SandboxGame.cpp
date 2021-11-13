@@ -22,8 +22,7 @@ public:
         }
     }
 
-    void OnImGuiRender(ImGuiContext *context) override{
-        ImGui::SetCurrentContext(context);
+    void OnImGuiRender() override{
         ImGui::Begin("Test");
         ImGui::Text("Hello ImGui!");
         ImGui::End();

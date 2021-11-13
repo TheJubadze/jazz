@@ -14,9 +14,7 @@ namespace Jazz {
 
         virtual void OnAttach() override;
         virtual void OnDetach() override;
-        virtual void OnImGuiRender(ImGuiContext *) override;
-
-        ImGuiContext *GetCurrentImGuiContext() { return m_imGuiContext; }
+        virtual void OnImGuiRender() override;
 
         void Begin();
         void End();
