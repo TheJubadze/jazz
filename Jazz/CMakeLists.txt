@@ -18,9 +18,12 @@ add_library(${PROJECT_NAME} STATIC
         src/Jazz/ImGui/ImGuiBuild.cpp
         src/Jazz/ImGui/ImGuiLayer.cpp
         src/Jazz/Renderer/Shader.cpp
+        src/Jazz/Renderer/Buffer.cpp
+        src/Jazz/Renderer/Renderer.cpp
         src/Platform/Windows/WindowsWindow.cpp
         src/Platform/Windows/WindowsInput.cpp
         src/Platform/OpenGL/OpenGLContext.cpp
+        src/Platform/OpenGL/OpenGLBuffer.cpp
         )
 
 find_package(OpenGL REQUIRED)

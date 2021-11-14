@@ -2,6 +2,7 @@
 
 #include <Jazz/ImGui/ImGuiLayer.h>
 #include <Jazz/Renderer/Shader.h>
+#include <Jazz/Renderer/Buffer.h>
 #include "Core.h"
 #include "Jazz/Events/ApplicationEvent.h"
 #include "Events/Event.h"
@@ -32,8 +33,10 @@ namespace Jazz {
         bool m_Running = true;
         LayerStack m_LayerStack;
 
-        unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+        unsigned int m_VertexArray;
         std::unique_ptr<Shader> m_Shader;
+        std::unique_ptr<VertexBuffer> m_VertexBuffer;
+        std::unique_ptr<IndexBuffer> m_IndexBuffer;
 
     private:
         static Application *s_Instance;
