@@ -17,6 +17,7 @@ add_library(${PROJECT_NAME} STATIC
         src/Jazz/LayerStack.cpp
         src/Jazz/ImGui/ImGuiBuild.cpp
         src/Jazz/ImGui/ImGuiLayer.cpp
+        src/Jazz/Renderer/Shader.cpp
         src/Platform/Windows/WindowsWindow.cpp
         src/Platform/Windows/WindowsInput.cpp
         src/Platform/OpenGL/OpenGLContext.cpp
