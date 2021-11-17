@@ -1,13 +1,11 @@
 #include "Layer.h"
 
+#include <utility>
+
 namespace Jazz {
 
-    Layer::Layer(const std::string &debugName)
-            : m_DebugName(debugName) {
-    }
-
-    Layer::~Layer() {
-
+    Layer::Layer(std::string debugName)
+            : m_DebugName(std::move(debugName)) {
     }
 
 }

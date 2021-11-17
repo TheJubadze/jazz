@@ -8,8 +8,8 @@ namespace Jazz {
 
     class JAZZ_API Layer {
     public:
-        Layer(const std::string &name = "Layer");
-        virtual ~Layer();
+        Layer(std::string name = "Layer");
+        virtual ~Layer() = default;
 
         virtual void OnAttach() {}
         virtual void OnDetach() {}

@@ -14,7 +14,7 @@ namespace Jazz {
     class JAZZ_API Application {
     public:
         Application();
-        virtual ~Application();
+        virtual ~Application() = default;
 
         void Run();
 
