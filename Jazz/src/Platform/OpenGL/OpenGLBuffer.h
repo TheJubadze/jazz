@@ -7,7 +7,7 @@ namespace Jazz {
     class OpenGLVertexBuffer : public VertexBuffer {
     public:
         OpenGLVertexBuffer(float *vertices, uint32_t size);
-        virtual ~OpenGLVertexBuffer();
+        ~OpenGLVertexBuffer() override;
 
         virtual void Bind() const override;
         virtual void Unbind() const override;
@@ -22,7 +22,7 @@ namespace Jazz {
     class OpenGLIndexBuffer : public IndexBuffer {
     public:
         OpenGLIndexBuffer(uint32_t *indices, uint32_t count);
-        virtual ~OpenGLIndexBuffer();
+        ~OpenGLIndexBuffer() override;
 
         virtual void Bind() const;
         virtual void Unbind() const;

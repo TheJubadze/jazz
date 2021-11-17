@@ -21,11 +21,14 @@ add_library(${PROJECT_NAME} STATIC
         src/Jazz/Renderer/Buffer.cpp
         src/Jazz/Renderer/Renderer.cpp
         src/Jazz/Renderer/VertexArray.cpp
+        src/Jazz/Renderer/RenderCommand.cpp
+        src/Jazz/Renderer/RendererAPI.cpp
         src/Platform/Windows/WindowsWindow.cpp
         src/Platform/Windows/WindowsInput.cpp
         src/Platform/OpenGL/OpenGLContext.cpp
         src/Platform/OpenGL/OpenGLBuffer.cpp
         src/Platform/OpenGL/OpenGLVertexArray.cpp
+        src/Platform/OpenGL/OpenGLRendererAPI.cpp
         )
 
 find_package(OpenGL REQUIRED)
