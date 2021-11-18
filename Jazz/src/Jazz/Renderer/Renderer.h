@@ -21,7 +21,7 @@ namespace Jazz {
             glm::mat4 ViewProjectionMatrix;
         };
 
-        static SceneData *m_SceneData;
+        static SceneData *s_SceneData;
     };
 
 }
