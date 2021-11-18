@@ -23,6 +23,7 @@ add_library(${PROJECT_NAME} STATIC
         src/Jazz/Renderer/VertexArray.cpp
         src/Jazz/Renderer/RenderCommand.cpp
         src/Jazz/Renderer/RendererAPI.cpp
+        src/Jazz/Renderer/OrthographicCamera.cpp
         src/Platform/Windows/WindowsWindow.cpp
         src/Platform/Windows/WindowsInput.cpp
         src/Platform/OpenGL/OpenGLContext.cpp

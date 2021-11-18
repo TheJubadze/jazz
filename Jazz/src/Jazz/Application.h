@@ -4,6 +4,7 @@
 #include <Jazz/Renderer/Shader.h>
 #include <Jazz/Renderer/Buffer.h>
 #include <Jazz/Renderer/VertexArray.h>
+#include <Jazz/Renderer/OrthographicCamera.h>
 #include "Core.h"
 #include "Jazz/Events/ApplicationEvent.h"
 #include "Events/Event.h"
@@ -39,7 +40,7 @@ namespace Jazz {
 
         std::shared_ptr<Shader> m_BlueShader;
         std::shared_ptr<VertexArray> m_SquareVA;
-
+        OrthographicCamera m_Camera;
     private:
         static Application *s_Instance;
     };
