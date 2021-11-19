@@ -1,8 +1,9 @@
 #pragma once
 
 #include <imgui_internal.h>
-#include "Jazz/Core.h"
-#include "Jazz/Events/Event.h"
+#include <Jazz/Core.h>
+#include <Jazz/Events/Event.h>
+#include <Jazz/Core/Timestep.h>
 
 namespace Jazz {
 
@@ -13,7 +14,7 @@ namespace Jazz {
 
         virtual void OnAttach() {}
         virtual void OnDetach() {}
-        virtual void OnUpdate() {}
+        virtual void OnUpdate(Timestep ts) {}
         virtual void OnImGuiRender() {}
         virtual void OnEvent(Event &) {}
 

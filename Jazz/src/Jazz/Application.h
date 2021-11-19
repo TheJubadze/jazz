@@ -1,15 +1,12 @@
 #pragma once
 
+#include <Core.h>
+
+#include <Window.h>
+#include <LayerStack.h>
+#include <Events/Event.h>
+#include <Jazz/Events/ApplicationEvent.h>
 #include <Jazz/ImGui/ImGuiLayer.h>
-#include <Jazz/Renderer/Shader.h>
-#include <Jazz/Renderer/Buffer.h>
-#include <Jazz/Renderer/VertexArray.h>
-#include <Jazz/Renderer/OrthographicCamera.h>
-#include "Core.h"
-#include "Jazz/Events/ApplicationEvent.h"
-#include "Events/Event.h"
-#include "Window.h"
-#include "LayerStack.h"
 
 namespace Jazz {
     class JAZZ_API Application {
@@ -35,14 +32,9 @@ namespace Jazz {
         bool m_Running = true;
         LayerStack m_LayerStack;
 
-        std::shared_ptr<Shader> m_Shader;
-        std::shared_ptr<VertexArray> m_VertexArray;
-
-        std::shared_ptr<Shader> m_BlueShader;
-        std::shared_ptr<VertexArray> m_SquareVA;
-        OrthographicCamera m_Camera;
     private:
         static Application *s_Instance;
+        float m_LastFrameTime = 0.0f;
     };
 
     // To be defined in CLIENT
