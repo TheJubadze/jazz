@@ -15,8 +15,10 @@ add_library(${PROJECT_NAME} STATIC
         src/Jazz/Log.cpp
         src/Jazz/Layer.cpp
         src/Jazz/LayerStack.cpp
+
         src/Jazz/ImGui/ImGuiBuild.cpp
         src/Jazz/ImGui/ImGuiLayer.cpp
+
         src/Jazz/Renderer/Shader.cpp
         src/Jazz/Renderer/Buffer.cpp
         src/Jazz/Renderer/Renderer.cpp
@@ -24,12 +26,15 @@ add_library(${PROJECT_NAME} STATIC
         src/Jazz/Renderer/RenderCommand.cpp
         src/Jazz/Renderer/RendererAPI.cpp
         src/Jazz/Renderer/OrthographicCamera.cpp
+
         src/Platform/Windows/WindowsWindow.cpp
         src/Platform/Windows/WindowsInput.cpp
+
         src/Platform/OpenGL/OpenGLContext.cpp
         src/Platform/OpenGL/OpenGLBuffer.cpp
         src/Platform/OpenGL/OpenGLVertexArray.cpp
         src/Platform/OpenGL/OpenGLRendererAPI.cpp
+        src/Platform/OpenGL/OpenGLShader.cpp
         )
 
 find_package(OpenGL REQUIRED)
