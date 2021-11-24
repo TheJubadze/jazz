@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #ifdef JZ_PLATFORM_WINDOWS
     #if JZ_DYNAMIC_LINK
         #ifdef JZ_BUILD_DLL
@@ -29,3 +31,13 @@
 #define BIT(x) (1 << x)
 
 #define JZ_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+
+namespace Jazz {
+
+    template<typename T>
+    using Scope = std::unique_ptr<T>;
+
+    template<typename T>
+    using Ref = std::shared_ptr<T>;
+
+}
