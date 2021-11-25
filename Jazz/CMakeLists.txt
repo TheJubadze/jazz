@@ -26,6 +26,7 @@ add_library(${PROJECT_NAME} STATIC
         src/Jazz/Renderer/RenderCommand.cpp
         src/Jazz/Renderer/RendererAPI.cpp
         src/Jazz/Renderer/OrthographicCamera.cpp
+        src/Jazz/Renderer/Texture.cpp
 
         src/Platform/Windows/WindowsWindow.cpp
         src/Platform/Windows/WindowsInput.cpp
@@ -35,6 +36,9 @@ add_library(${PROJECT_NAME} STATIC
         src/Platform/OpenGL/OpenGLVertexArray.cpp
         src/Platform/OpenGL/OpenGLRendererAPI.cpp
         src/Platform/OpenGL/OpenGLShader.cpp
+        src/Platform/OpenGL/OpenGLTexture.cpp
+
+        vendor/stb_image/stb_image.cpp
         )
 
 find_package(OpenGL REQUIRED)
@@ -55,6 +59,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/vendor/spdlog/include
         ${CMAKE_CURRENT_SOURCE_DIR}/vendor/glm/glm
         ${CMAKE_CURRENT_SOURCE_DIR}/vendor/imgui/imgui
+        ${CMAKE_CURRENT_SOURCE_DIR}/vendor/stb_image
         )
 
 target_precompile_headers(${PROJECT_NAME} PUBLIC
