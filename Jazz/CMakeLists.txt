@@ -15,6 +15,7 @@ set(Sources
         src/Jazz/Log.cpp
         src/Jazz/Layer.cpp
         src/Jazz/LayerStack.cpp
+        src/Jazz/OrthographicCameraController.cpp
 
         src/Jazz/ImGui/ImGuiBuild.cpp
         src/Jazz/ImGui/ImGuiLayer.cpp

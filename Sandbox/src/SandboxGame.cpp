@@ -7,21 +7,21 @@
 class ExampleLayer : public Jazz::Layer {
 public:
     ExampleLayer()
-            : Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f) {
+        : Layer("Example"), m_CameraController(1280.0f / 720.0f) {
 
         m_VertexArray.reset(Jazz::VertexArray::Create());
 
         float vertices[3 * 7] = {
-                -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
-                0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
-                0.0f, 0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
+            -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
+            0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
+            0.0f, 0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
         };
 
         Jazz::Ref<Jazz::VertexBuffer> vertexBuffer;
         vertexBuffer.reset(Jazz::VertexBuffer::Create(vertices, sizeof(vertices)));
         Jazz::BufferLayout layout = {
-                {Jazz::ShaderDataType::Float3, "a_Position"},
-                {Jazz::ShaderDataType::Float4, "a_Color"}
+            {Jazz::ShaderDataType::Float3, "a_Position"},
+            {Jazz::ShaderDataType::Float4, "a_Color"}
         };
         vertexBuffer->SetLayout(layout);
         m_VertexArray->AddVertexBuffer(vertexBuffer);
@@ -34,19 +34,19 @@ public:
         m_SquareVA.reset(Jazz::VertexArray::Create());
 
         float squareVertices[5 * 4] = {
-                -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
-                0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-                0.5f, 0.5f, 0.0f, 1.0f, 1.0f,
-                -0.5f, 0.5f, 0.0f, 0.0f, 1.0f
+            -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+            0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+            0.5f, 0.5f, 0.0f, 1.0f, 1.0f,
+            -0.5f, 0.5f, 0.0f, 0.0f, 1.0f
         };
 
         Jazz::Ref<Jazz::VertexBuffer> squareVB;
         squareVB.reset(Jazz::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
         squareVB->SetLayout(
-                {
-                        {Jazz::ShaderDataType::Float3, "a_Position"},
-                        {Jazz::ShaderDataType::Float2, "a_TexCoord"}
-                });
+            {
+                {Jazz::ShaderDataType::Float3, "a_Position"},
+                {Jazz::ShaderDataType::Float2, "a_TexCoord"}
+            });
         m_SquareVA->AddVertexBuffer(squareVB);
 
         uint32_t squareIndices[6] = {0, 1, 2, 2, 3, 0};
@@ -135,33 +135,20 @@ public:
     }
 
     void OnUpdate(Jazz::Timestep ts) override {
-        if (Jazz::Input::IsKeyPressed(JZ_KEY_LEFT))
-            m_CameraPosition.x -= m_CameraMoveSpeed * ts;
-        else if (Jazz::Input::IsKeyPressed(JZ_KEY_RIGHT))
-            m_CameraPosition.x += m_CameraMoveSpeed * ts;
+        // Update
+        m_CameraController.OnUpdate(ts);
 
-        if (Jazz::Input::IsKeyPressed(JZ_KEY_UP))
-            m_CameraPosition.y += m_CameraMoveSpeed * ts;
-        else if (Jazz::Input::IsKeyPressed(JZ_KEY_DOWN))
-            m_CameraPosition.y -= m_CameraMoveSpeed * ts;
-
-        if (Jazz::Input::IsKeyPressed(JZ_KEY_A))
-            m_CameraRotation += m_CameraRotationSpeed * ts;
-        if (Jazz::Input::IsKeyPressed(JZ_KEY_D))
-            m_CameraRotation -= m_CameraRotationSpeed * ts;
-
+        // Render
         Jazz::RenderCommand::SetClearColor({0.1f, 0.1f, 0.1f, 1});
         Jazz::RenderCommand::Clear();
 
-        m_Camera.SetPosition(m_CameraPosition);
-        m_Camera.SetRotation(m_CameraRotation);
-
-        Jazz::Renderer::BeginScene(m_Camera);
+        Jazz::Renderer::BeginScene(m_CameraController.GetCamera());
 
         glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
         std::dynamic_pointer_cast<Jazz::OpenGLShader>(m_FlatColorShader)->Bind();
-        std::dynamic_pointer_cast<Jazz::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+        std::dynamic_pointer_cast<Jazz::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color",
+                                                                                              m_SquareColor);
 
         for (int y = 0; y < 20; y++) {
             for (int x = 0; x < 20; x++) {
@@ -184,7 +171,8 @@ public:
         Jazz::Renderer::EndScene();
     }
 
-    void OnEvent(Jazz::Event &event) override {
+    void OnEvent(Jazz::Event &e) override {
+        m_CameraController.OnEvent(e);
     }
 
     void OnImGuiRender() override {
@@ -203,13 +191,8 @@ private:
 
     Jazz::Ref<Jazz::Texture2D> m_Texture, m_ChernoLogoTexture;
 
-    Jazz::OrthographicCamera m_Camera;
-    glm::vec3 m_CameraPosition;
-    float m_CameraMoveSpeed = 5.0f;
-
-    float m_CameraRotation = 0.0f;
-    float m_CameraRotationSpeed = 180.0f;
-
+    Jazz::OrthographicCameraController m_CameraController;
+    
     glm::vec3 m_SquareColor = {0.2f, 0.3f, 0.8f};
 };
 
