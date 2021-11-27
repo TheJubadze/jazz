@@ -7,21 +7,21 @@
 class ExampleLayer : public Jazz::Layer {
 public:
     ExampleLayer()
-        : Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f) {
+            : Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f) {
 
         m_VertexArray.reset(Jazz::VertexArray::Create());
 
         float vertices[3 * 7] = {
-            -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
-            0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
-            0.0f, 0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
+                -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
+                0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
+                0.0f, 0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
         };
 
         Jazz::Ref<Jazz::VertexBuffer> vertexBuffer;
         vertexBuffer.reset(Jazz::VertexBuffer::Create(vertices, sizeof(vertices)));
         Jazz::BufferLayout layout = {
-            {Jazz::ShaderDataType::Float3, "a_Position"},
-            {Jazz::ShaderDataType::Float4, "a_Color"}
+                {Jazz::ShaderDataType::Float3, "a_Position"},
+                {Jazz::ShaderDataType::Float4, "a_Color"}
         };
         vertexBuffer->SetLayout(layout);
         m_VertexArray->AddVertexBuffer(vertexBuffer);
@@ -34,19 +34,19 @@ public:
         m_SquareVA.reset(Jazz::VertexArray::Create());
 
         float squareVertices[5 * 4] = {
-            -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
-            0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-            0.5f, 0.5f, 0.0f, 1.0f, 1.0f,
-            -0.5f, 0.5f, 0.0f, 0.0f, 1.0f
+                -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+                0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+                0.5f, 0.5f, 0.0f, 1.0f, 1.0f,
+                -0.5f, 0.5f, 0.0f, 0.0f, 1.0f
         };
 
         Jazz::Ref<Jazz::VertexBuffer> squareVB;
         squareVB.reset(Jazz::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
         squareVB->SetLayout(
-            {
-                {Jazz::ShaderDataType::Float3, "a_Position"},
-                {Jazz::ShaderDataType::Float2, "a_TexCoord"}
-            });
+                {
+                        {Jazz::ShaderDataType::Float3, "a_Position"},
+                        {Jazz::ShaderDataType::Float2, "a_TexCoord"}
+                });
         m_SquareVA->AddVertexBuffer(squareVB);
 
         uint32_t squareIndices[6] = {0, 1, 2, 2, 3, 0};
@@ -89,7 +89,7 @@ public:
 	}
 		)";
 
-        m_Shader.reset(Jazz::Shader::Create(vertexSrc, fragmentSrc));
+        m_Shader = Jazz::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 
         std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
@@ -123,15 +123,15 @@ public:
 			}
 		)";
 
-        m_FlatColorShader.reset(Jazz::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+        m_FlatColorShader = Jazz::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
 
-        m_TextureShader.reset(Jazz::Shader::Create("assets/shaders/Texture.glsl"));
+        auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
         m_Texture = Jazz::Texture2D::Create("assets/textures/Checkerboard.png");
         m_ChernoLogoTexture = Jazz::Texture2D::Create("assets/textures/ChernoLogo.png");
 
-        std::dynamic_pointer_cast<Jazz::OpenGLShader>(m_TextureShader)->Bind();
-        std::dynamic_pointer_cast<Jazz::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+        std::dynamic_pointer_cast<Jazz::OpenGLShader>(textureShader)->Bind();
+        std::dynamic_pointer_cast<Jazz::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
     }
 
     void OnUpdate(Jazz::Timestep ts) override {
@@ -171,11 +171,12 @@ public:
             }
         }
 
+        auto textureShader = m_ShaderLibrary.Get("Texture");
 
         m_Texture->Bind();
-        Jazz::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+        Jazz::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
         m_ChernoLogoTexture->Bind();
-        Jazz::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+        Jazz::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
         // Triangle
         // Jazz::Renderer::Submit(m_Shader, m_VertexArray);
@@ -193,10 +194,11 @@ public:
     }
 
 private:
+    Jazz::ShaderLibrary m_ShaderLibrary;
     Jazz::Ref<Jazz::Shader> m_Shader;
     Jazz::Ref<Jazz::VertexArray> m_VertexArray;
 
-    Jazz::Ref<Jazz::Shader> m_FlatColorShader, m_TextureShader;
+    Jazz::Ref<Jazz::Shader> m_FlatColorShader;
     Jazz::Ref<Jazz::VertexArray> m_SquareVA;
 
     Jazz::Ref<Jazz::Texture2D> m_Texture, m_ChernoLogoTexture;

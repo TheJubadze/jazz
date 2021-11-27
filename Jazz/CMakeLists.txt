@@ -10,7 +10,7 @@ set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(GLFW_INSTALL OFF CACHE BOOL "GLFW lib only")
 
-add_library(${PROJECT_NAME} STATIC
+set(Sources
         src/Jazz/Application.cpp
         src/Jazz/Log.cpp
         src/Jazz/Layer.cpp
@@ -40,6 +40,10 @@ add_library(${PROJECT_NAME} STATIC
 
         vendor/stb_image/stb_image.cpp
         )
+
+set(Headers)
+
+add_library(${PROJECT_NAME} STATIC ${Sources} ${Headers})
 
 find_package(OpenGL REQUIRED)
 
