@@ -1,10 +1,10 @@
 #include <memory>
 
-#include <Application.h>
+#include <src/Jazz/Core/Application.h>
 #include <Jazz/Renderer/Renderer.h>
 #include <Core/Timestep.h>
 
-#include <glfw/glfw3.h>
+#include <vendor/GLFW/include/GLFW/glfw3.h>
 
 namespace Jazz {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)

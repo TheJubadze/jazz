@@ -1,7 +1,7 @@
 #pragma once
 
 #include <imgui_internal.h>
-#include <Jazz/Core.h>
+#include <src/Jazz/Core/Core.h>
 #include <Jazz/Events/Event.h>
 #include <Jazz/Core/Timestep.h>
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Jazz/Window.h"
+#include "Jazz/Core/Window.h"
 
 #include <GLFW/glfw3.h>
 #include <Jazz/Renderer/GraphicsContext.h>

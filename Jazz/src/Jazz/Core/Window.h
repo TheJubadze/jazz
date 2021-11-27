@@ -2,7 +2,7 @@
 
 #include "jzpch.h"
 
-#include "Jazz/Core.h"
+#include "Core.h"
 #include "Jazz/Events/Event.h"
 
 namespace Jazz {

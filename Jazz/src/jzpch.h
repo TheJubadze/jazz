@@ -13,7 +13,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Jazz/Log.h"
+#include "Jazz/Core/Log.h"
 
 #ifdef JZ_PLATFORM_WINDOWS
 #include <Windows.h>

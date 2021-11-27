@@ -11,11 +11,10 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(GLFW_INSTALL OFF CACHE BOOL "GLFW lib only")
 
 set(Sources
-        src/Jazz/Application.cpp
-        src/Jazz/Log.cpp
-        src/Jazz/Layer.cpp
-        src/Jazz/LayerStack.cpp
-        src/Jazz/OrthographicCameraController.cpp
+        src/Jazz/Core/Application.cpp
+        src/Jazz/Core/Log.cpp
+        src/Jazz/Core/Layer.cpp
+        src/Jazz/Core/LayerStack.cpp
 
         src/Jazz/ImGui/ImGuiBuild.cpp
         src/Jazz/ImGui/ImGuiLayer.cpp
@@ -27,6 +26,7 @@ set(Sources
         src/Jazz/Renderer/RenderCommand.cpp
         src/Jazz/Renderer/RendererAPI.cpp
         src/Jazz/Renderer/OrthographicCamera.cpp
+        src/Jazz/Renderer/OrthographicCameraController.cpp
         src/Jazz/Renderer/Texture.cpp
 
         src/Platform/Windows/WindowsWindow.cpp

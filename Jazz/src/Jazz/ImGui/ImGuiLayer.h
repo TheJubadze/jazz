@@ -3,7 +3,7 @@
 #include <Jazz/Events/ApplicationEvent.h>
 #include <Jazz/Events/MouseEvent.h>
 #include <Jazz/Events/KeyEvent.h>
-#include <Jazz/Layer.h>
+#include <Jazz/Core/Layer.h>
 
 namespace Jazz {
 

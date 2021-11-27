@@ -1,6 +1,6 @@
 #include "WindowsInput.h"
 
-#include "Jazz/Application.h"
+#include "Jazz/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Jazz {

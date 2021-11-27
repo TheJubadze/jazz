@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Jazz/Core.h"
+#include "Jazz/Core/Core.h"
 
 #include <string>
 #include <functional>

@@ -1,9 +1,9 @@
 #pragma once
 
-#include <Core.h>
+#include <src/Jazz/Core/Core.h>
 
-#include <Window.h>
-#include <LayerStack.h>
+#include <src/Jazz/Core/Window.h>
+#include <src/Jazz/Core/LayerStack.h>
 #include <Events/Event.h>
 #include <Jazz/Events/ApplicationEvent.h>
 #include <Jazz/ImGui/ImGuiLayer.h>

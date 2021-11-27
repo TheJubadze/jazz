@@ -1,7 +1,7 @@
 #include "OrthographicCameraController.h"
 
-#include "Jazz/Input.h"
-#include "Jazz/KeyCodes.h"
+#include "Jazz/Core/Input.h"
+#include "Jazz/Core/KeyCodes.h"
 
 namespace Jazz {
 

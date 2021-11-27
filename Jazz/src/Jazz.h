@@ -2,14 +2,14 @@
 
 //For use by Jazz applications
 
-#include "Jazz/Application.h"
-#include "Jazz/Layer.h"
-#include "Jazz/Log.h"
+#include "Jazz/Core/Application.h"
+#include "Jazz/Core/Layer.h"
+#include "Jazz/Core/Log.h"
 
-#include "Jazz/Input.h"
-#include "Jazz/KeyCodes.h"
-#include "Jazz/MouseButtonCodes.h"
-#include "Jazz/OrthographicCameraController.h"
+#include "Jazz/Core/Input.h"
+#include "Jazz/Core/KeyCodes.h"
+#include "Jazz/Core/MouseButtonCodes.h"
+#include "Jazz/Renderer/OrthographicCameraController.h"
 
 #include <Jazz/ImGui/ImGuiLayer.h>
 
@@ -26,5 +26,5 @@
 // -----------------------------------
 
 // ---Entry Point------------------------------
-#include "Jazz/EntryPoint.h"
+#include "Jazz/Core/EntryPoint.h"
 // --------------------------------------------

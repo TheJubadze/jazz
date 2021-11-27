@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Jazz/Input.h"
+#include "Jazz/Core/Input.h"
 
 namespace Jazz {
 
