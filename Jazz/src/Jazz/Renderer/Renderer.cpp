@@ -3,7 +3,7 @@
 
 namespace Jazz {
 
-    Renderer::SceneData *Renderer::s_SceneData = new Renderer::SceneData;
+    Scope<Renderer::SceneData> Renderer::s_SceneData = CreateScope<Renderer::SceneData>();
 
     void Renderer::Init() {
         RenderCommand::Init();
