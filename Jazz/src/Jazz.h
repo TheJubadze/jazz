@@ -24,7 +24,3 @@
 
 #include "Jazz/Renderer/OrthographicCamera.h"
 // -----------------------------------
-
-// ---Entry Point------------------------------
-#include "Jazz/Core/EntryPoint.h"
-// --------------------------------------------

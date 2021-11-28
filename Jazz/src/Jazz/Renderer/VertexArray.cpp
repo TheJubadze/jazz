@@ -5,16 +5,17 @@
 
 namespace Jazz {
 
-	VertexArray* VertexArray::Create()
-	{
-		switch (Renderer::GetAPI())
-		{
-            case RendererAPI::API::None:    JZ_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case RendererAPI::API::OpenGL:  return new OpenGLVertexArray();
-		}
+    Ref<VertexArray> VertexArray::Create() {
+        switch (Renderer::GetAPI()) {
+            case RendererAPI::API::None:
+                JZ_CORE_ASSERT(false, "RendererAPI::None is currently not supported!");
+                return nullptr;
+            case RendererAPI::API::OpenGL:
+                return std::make_shared<OpenGLVertexArray>();
+        }
 
-		JZ_CORE_ASSERT(false, "Unknown RendererAPI!");
-		return nullptr;
-	}
+        JZ_CORE_ASSERT(false, "Unknown RendererAPI!");
+        return nullptr;
+    }
 
 }
