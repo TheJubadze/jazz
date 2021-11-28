@@ -16,6 +16,5 @@
 #include "Jazz/Core/Log.h"
 
 #ifdef JZ_PLATFORM_WINDOWS
-#include <Windows.h>
+    #include <Windows.h>
 #endif
-

@@ -14,8 +14,3 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} PUBLIC JazzEngine)
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
-
-if (WIN32)
-    add_compile_definitions(JZ_PLATFORM_WINDOWS)
-else ()
-endif ()
