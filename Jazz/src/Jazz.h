@@ -15,6 +15,7 @@
 
 // ---Renderer------------------------
 #include "Jazz/Renderer/Renderer.h"
+#include "Jazz/Renderer/Renderer2D.h"
 #include "Jazz/Renderer/RenderCommand.h"
 
 #include "Jazz/Renderer/Buffer.h"

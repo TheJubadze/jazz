@@ -22,6 +22,7 @@ set(Sources
         src/Jazz/Renderer/Shader.cpp
         src/Jazz/Renderer/Buffer.cpp
         src/Jazz/Renderer/Renderer.cpp
+        src/Jazz/Renderer/Renderer2D.cpp
         src/Jazz/Renderer/VertexArray.cpp
         src/Jazz/Renderer/RenderCommand.cpp
         src/Jazz/Renderer/RendererAPI.cpp
