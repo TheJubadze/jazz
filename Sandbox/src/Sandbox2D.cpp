@@ -8,6 +8,7 @@ Sandbox2D::Sandbox2D()
 }
 
 void Sandbox2D::OnAttach() {
+    m_CheckerboardTexture = Jazz::Texture2D::Create("assets/textures/Checkerboard.png");
 }
 
 void Sandbox2D::OnDetach() {
@@ -22,13 +23,10 @@ void Sandbox2D::OnUpdate(Jazz::Timestep ts) {
     Jazz::RenderCommand::Clear();
 
     Jazz::Renderer2D::BeginScene(m_CameraController.GetCamera());
-    Jazz::Renderer2D::DrawQuad({0.0f, 0.0f}, {1.0f, 1.0f}, {0.8f, 0.2f, 0.3f, 1.0f});
+    Jazz::Renderer2D::DrawQuad({-1.0f, 0.0f}, {0.8f, 0.8f}, {0.8f, 0.2f, 0.3f, 1.0f});
+    Jazz::Renderer2D::DrawQuad({0.5f, -0.5f}, {0.5f, 0.75f}, {0.2f, 0.3f, 0.8f, 1.0f});
+    Jazz::Renderer2D::DrawQuad({0.0f, 0.0f, -0.1f}, {10.0f, 10.0f}, m_CheckerboardTexture);
     Jazz::Renderer2D::EndScene();
-
-    // TODO: Add these functions - Shader::SetMat4, Shader::SetFloat4
-    // std::dynamic_pointer_cast<Jazz::OpenGLShader>(m_FlatColorShader)->Bind();
-    // std::dynamic_pointer_cast<Jazz::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
-
 }
 
 void Sandbox2D::OnImGuiRender() {
@@ -37,6 +35,6 @@ void Sandbox2D::OnImGuiRender() {
     ImGui::End();
 }
 
-void Sandbox2D::OnEvent(Jazz::Event &e) {
+void Sandbox2D::OnEvent(Jazz::Event & e) {
     m_CameraController.OnEvent(e);
 }

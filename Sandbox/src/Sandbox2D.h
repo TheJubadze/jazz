@@ -2,24 +2,24 @@
 
 #include "Jazz.h"
 
-class Sandbox2D : public Jazz::Layer
-{
+class Sandbox2D : public Jazz::Layer {
 public:
-	Sandbox2D();
-	virtual ~Sandbox2D() = default;
+    Sandbox2D();
+    virtual ~Sandbox2D() = default;
 
-	virtual void OnAttach() override;
-	virtual void OnDetach() override;
+    virtual void OnAttach() override;
+    virtual void OnDetach() override;
 
-	void OnUpdate(Jazz::Timestep ts) override;
-	virtual void OnImGuiRender() override;
-	void OnEvent(Jazz::Event& e) override;
+    void OnUpdate(Jazz::Timestep ts) override;
+    virtual void OnImGuiRender() override;
+    void OnEvent(Jazz::Event &e) override;
 private:
-	Jazz::OrthographicCameraController m_CameraController;
-	
-	// Temp
-	Jazz::Ref<Jazz::VertexArray> m_SquareVA;
-	Jazz::Ref<Jazz::Shader> m_FlatColorShader;
+    Jazz::OrthographicCameraController m_CameraController;
 
-	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
+    // Temp
+    Jazz::Ref<Jazz::VertexArray> m_SquareVA;
+    Jazz::Ref<Jazz::Shader> m_FlatColorShader;
+    Jazz::Ref<Jazz::Texture2D> m_CheckerboardTexture;
+
+    glm::vec4 m_SquareColor = {0.2f, 0.3f, 0.8f, 1.0f};
 };
