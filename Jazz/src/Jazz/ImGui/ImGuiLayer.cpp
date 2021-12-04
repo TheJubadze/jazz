@@ -16,6 +16,8 @@ namespace Jazz {
     }
 
     void ImGuiLayer::OnAttach() {
+        JZ_PROFILE_FUNCTION();
+
         // Setup Dear ImGui context
         IMGUI_CHECKVERSION();
         m_imGuiContext = ImGui::CreateContext();
@@ -48,12 +50,16 @@ namespace Jazz {
     }
 
     void ImGuiLayer::OnDetach() {
+        JZ_PROFILE_FUNCTION();
+
         ImGui_ImplOpenGL3_Shutdown();
         ImGui_ImplGlfw_Shutdown();
         ImGui::DestroyContext();
     }
 
     void ImGuiLayer::Begin() {
+        JZ_PROFILE_FUNCTION();
+
         ImGui::SetCurrentContext(m_imGuiContext);
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
@@ -61,6 +67,8 @@ namespace Jazz {
     }
 
     void ImGuiLayer::End() {
+        JZ_PROFILE_FUNCTION();
+
         ImGuiIO &io = ImGui::GetIO();
         Application &app = Application::Get();
         io.DisplaySize = ImVec2((float) app.GetWindow().GetWidth(), (float) app.GetWindow().GetHeight());

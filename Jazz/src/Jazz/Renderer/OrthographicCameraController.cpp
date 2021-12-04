@@ -12,6 +12,8 @@ namespace Jazz {
     }
 
     void OrthographicCameraController::OnUpdate(Timestep ts) {
+        JZ_PROFILE_FUNCTION();
+
         if (Input::IsKeyPressed(JZ_KEY_A)) {
             m_CameraPosition.x -= cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
             m_CameraPosition.y -= sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
@@ -48,12 +50,16 @@ namespace Jazz {
     }
 
     void OrthographicCameraController::OnEvent(Event &e) {
+        JZ_PROFILE_FUNCTION();
+
         EventDispatcher dispatcher(e);
         dispatcher.Dispatch<MouseScrolledEvent>(JZ_BIND_EVENT_FN(OrthographicCameraController::OnMouseScrolled));
         dispatcher.Dispatch<WindowResizeEvent>(JZ_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
     }
 
     bool OrthographicCameraController::OnMouseScrolled(MouseScrolledEvent &e) {
+        JZ_PROFILE_FUNCTION();
+
         m_ZoomLevel -= e.GetYOffset() * 0.25f;
         m_ZoomLevel = std::max(m_ZoomLevel, 0.25f);
         m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
@@ -61,6 +67,8 @@ namespace Jazz {
     }
 
     bool OrthographicCameraController::OnWindowResized(WindowResizeEvent &e) {
+        JZ_PROFILE_FUNCTION();
+
         m_AspectRatio = (float) e.GetWidth() / (float) e.GetHeight();
         m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
         return false;

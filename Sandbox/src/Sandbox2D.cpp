@@ -9,20 +9,21 @@ Sandbox2D::Sandbox2D()
 }
 
 void Sandbox2D::OnAttach() {
+    JZ_PROFILE_FUNCTION();
+
     m_CheckerboardTexture = Jazz::Texture2D::Create("assets/textures/Checkerboard.png");
 }
 
 void Sandbox2D::OnDetach() {
+    JZ_PROFILE_FUNCTION();
 }
+
 
 void Sandbox2D::OnUpdate(Jazz::Timestep ts) {
     JZ_PROFILE_FUNCTION();
 
     // Update
-    {
-        JZ_PROFILE_SCOPE("CameraController::OnUpdate");
-        m_CameraController.OnUpdate(ts);
-    }
+    m_CameraController.OnUpdate(ts);
 
     // Render
     {

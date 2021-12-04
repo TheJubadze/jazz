@@ -24,22 +24,32 @@ namespace Jazz {
     }
 
     OpenGLVertexArray::OpenGLVertexArray() {
+        JZ_PROFILE_FUNCTION();
+
         glCreateVertexArrays(1, &m_RendererID);
     }
 
     OpenGLVertexArray::~OpenGLVertexArray() {
+        JZ_PROFILE_FUNCTION();
+
         glDeleteVertexArrays(1, &m_RendererID);
     }
 
     void OpenGLVertexArray::Bind() const {
+        JZ_PROFILE_FUNCTION();
+
         glBindVertexArray(m_RendererID);
     }
 
     void OpenGLVertexArray::Unbind() const {
+        JZ_PROFILE_FUNCTION();
+
         glBindVertexArray(0);
     }
 
     void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer> &vertexBuffer) {
+        JZ_PROFILE_FUNCTION();
+
         JZ_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!");
 
         glBindVertexArray(m_RendererID);
@@ -61,6 +71,8 @@ namespace Jazz {
     }
 
     void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer> &indexBuffer) {
+        JZ_PROFILE_FUNCTION();
+
         glBindVertexArray(m_RendererID);
         indexBuffer->Bind();
 

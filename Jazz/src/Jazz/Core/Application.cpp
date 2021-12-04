@@ -11,6 +11,8 @@ namespace Jazz {
     Application *Application::s_Instance = nullptr;
 
     Application::Application() {
+        JZ_PROFILE_FUNCTION();
+
         JZ_CORE_ASSERT(!s_Instance, "Application already exists!");
         s_Instance = this;
         m_Window = Window::Create();
@@ -23,18 +25,28 @@ namespace Jazz {
     }
 
     Application::~Application() {
+        JZ_PROFILE_FUNCTION();
+
         Renderer::Shutdown();
     }
 
     void Application::PushLayer(Layer *layer) {
+        JZ_PROFILE_FUNCTION();
+
         m_LayerStack.PushLayer(layer);
+        layer->OnAttach();
     }
 
     void Application::PushOverlay(Layer *layer) {
+        JZ_PROFILE_FUNCTION();
+
         m_LayerStack.PushOverlay(layer);
+        layer->OnAttach();
     }
 
     void Application::OnEvent(Event &e) {
+        JZ_PROFILE_FUNCTION();
+
         EventDispatcher dispatcher(e);
         dispatcher.Dispatch<WindowCloseEvent>(JZ_BIND_EVENT_FN(Application::OnWindowClose));
         dispatcher.Dispatch<WindowResizeEvent>(JZ_BIND_EVENT_FN(Application::OnWindowResize));
@@ -47,20 +59,32 @@ namespace Jazz {
     }
 
     void Application::Run() {
+        JZ_PROFILE_FUNCTION();
+
         while (m_Running) {
+            JZ_PROFILE_SCOPE("RunLoop");
+
             float time = (float) glfwGetTime();
             Timestep timestep = time - m_LastFrameTime;
             m_LastFrameTime = time;
 
             if (!m_Minimized) {
-                for (Layer *layer: m_LayerStack)
-                    layer->OnUpdate(timestep);
-            }
+                {
+                    JZ_PROFILE_SCOPE("LayerStack OnUpdate");
 
-            m_ImGuiLayer->Begin();
-            for (Layer *layer: m_LayerStack)
-                layer->OnImGuiRender();
-            m_ImGuiLayer->End();
+                    for (Layer *layer: m_LayerStack)
+                        layer->OnUpdate(timestep);
+                }
+
+                m_ImGuiLayer->Begin();
+                {
+                    JZ_PROFILE_SCOPE("LayerStack OnImGuiRender");
+
+                    for (Layer *layer: m_LayerStack)
+                        layer->OnImGuiRender();
+                }
+                m_ImGuiLayer->End();
+            }
 
             m_Window->OnUpdate();
         }
@@ -72,6 +96,8 @@ namespace Jazz {
     }
 
     bool Application::OnWindowResize(WindowResizeEvent &e) {
+        JZ_PROFILE_FUNCTION();
+
         if (e.GetWidth() == 0 || e.GetHeight() == 0) {
             m_Minimized = true;
             return false;
