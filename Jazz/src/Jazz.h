@@ -1,6 +1,7 @@
 #pragma once
 
 //For use by Jazz applications
+#include "Jazz/Core/Core.h"
 
 #include "Jazz/Core/Application.h"
 #include "Jazz/Core/Layer.h"
@@ -14,9 +15,9 @@
 #include <Jazz/ImGui/ImGuiLayer.h>
 
 // ---Renderer------------------------
+#include "Jazz/Renderer/RenderCommand.h"
 #include "Jazz/Renderer/Renderer.h"
 #include "Jazz/Renderer/Renderer2D.h"
-#include "Jazz/Renderer/RenderCommand.h"
 
 #include "Jazz/Renderer/Buffer.h"
 #include "Jazz/Renderer/Shader.h"

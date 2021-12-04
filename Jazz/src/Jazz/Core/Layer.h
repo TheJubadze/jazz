@@ -7,7 +7,7 @@
 
 namespace Jazz {
 
-    class JAZZ_API Layer {
+    class Layer {
     public:
         Layer(std::string name = "Layer");
         virtual ~Layer() = default;

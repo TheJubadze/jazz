@@ -2,7 +2,7 @@
 #include <Jazz/Events/KeyEvent.h>
 #include <Jazz/Events/MouseEvent.h>
 #include <Platform/OpenGL/OpenGLContext.h>
-#include "WindowsWindow.h"
+#include <Platform/Windows/WindowsWindow.h>
 
 namespace Jazz {
 
@@ -12,8 +12,8 @@ namespace Jazz {
         JZ_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
     }
 
-    Window *Window::Create(const WindowProps &props) {
-        return new WindowsWindow(props);
+    Scope<Window> Window::Create(const WindowProps &props) {
+        return CreateScope<WindowsWindow>(props);
     }
 
     WindowsWindow::WindowsWindow(const WindowProps &props) {
@@ -32,7 +32,6 @@ namespace Jazz {
         JZ_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
         if (s_GLFWWindowCount == 0) {
-            JZ_CORE_INFO("Initializing GLFW");
             int success = glfwInit();
             JZ_CORE_ASSERT(success, "Could not intialize GLFW!");
             glfwSetErrorCallback(GLFWErrorCallback);
@@ -41,7 +40,7 @@ namespace Jazz {
         m_Window = glfwCreateWindow((int) props.Width, (int) props.Height, m_Data.Title.c_str(), nullptr, nullptr);
         ++s_GLFWWindowCount;
 
-        m_Context = CreateScope<OpenGLContext>(m_Window);
+        m_Context = GraphicsContext::Create(m_Window);
         m_Context->Init();
 
         glfwSetWindowUserPointer(m_Window, &m_Data);
@@ -126,10 +125,8 @@ namespace Jazz {
 
     void WindowsWindow::Shutdown() {
         glfwDestroyWindow(m_Window);
-
         s_GLFWWindowCount--;
         if (s_GLFWWindowCount == 0) {
-            JZ_CORE_INFO("Terminating GLFW");
             glfwTerminate();
         }
     }
@@ -152,4 +149,4 @@ namespace Jazz {
         return m_Data.VSync;
     }
 
-}
+}// namespace Jazz

@@ -1,9 +1,6 @@
-#include "LayerStack.h"
+#include "Jazz/Core/LayerStack.h"
 
 namespace Jazz {
-
-    LayerStack::LayerStack() {
-    }
 
     LayerStack::~LayerStack() {
         for (Layer *layer: m_Layers) {
@@ -40,4 +37,4 @@ namespace Jazz {
         }
     }
 
-}
+}// namespace Jazz

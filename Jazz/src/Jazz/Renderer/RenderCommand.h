@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RendererAPI.h"
+#include "Jazz/Renderer/RendererAPI.h"
 
 namespace Jazz {
 
@@ -22,11 +22,12 @@ namespace Jazz {
             s_RendererAPI->Clear();
         }
 
-        inline static void DrawIndexed(const std::shared_ptr<VertexArray> &vertexArray) {
+        inline static void DrawIndexed(const Ref<VertexArray> &vertexArray) {
             s_RendererAPI->DrawIndexed(vertexArray);
         }
+
     private:
         static Scope<RendererAPI> s_RendererAPI;
     };
 
-}
+}// namespace Jazz

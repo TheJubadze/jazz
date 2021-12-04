@@ -1,4 +1,4 @@
-#include "OrthographicCamera.h"
+#include "Jazz/Renderer/OrthographicCamera.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -22,4 +22,4 @@ namespace Jazz {
         m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix;
     }
 
-}
+}// namespace Jazz

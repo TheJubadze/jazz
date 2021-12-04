@@ -1,9 +1,11 @@
 #include <Jazz.h>
 #include <Jazz/Core/EntryPoint.h>
 
+#include <imgui.h>
+
 #include <glm/gtc/matrix_transform.hpp>
-#include <gtc/type_ptr.hpp>
-#include <Platform/OpenGL/OpenGLShader.h>
+#include <glm/gtc/type_ptr.hpp>
+
 #include "Sandbox2D.h"
 
 class ExampleLayer : public Jazz::Layer {
@@ -14,46 +16,37 @@ public:
         m_VertexArray = Jazz::VertexArray::Create();
 
         float vertices[3 * 7] = {
-            -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
-            0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
-            0.0f, 0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
-        };
+                -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
+                0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
+                0.0f, 0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f};
 
-        Jazz::Ref<Jazz::VertexBuffer> vertexBuffer;
-        vertexBuffer.reset(Jazz::VertexBuffer::Create(vertices, sizeof(vertices)));
+        Jazz::Ref<Jazz::VertexBuffer> vertexBuffer = Jazz::VertexBuffer::Create(vertices, sizeof(vertices));
         Jazz::BufferLayout layout = {
-            {Jazz::ShaderDataType::Float3, "a_Position"},
-            {Jazz::ShaderDataType::Float4, "a_Color"}
-        };
+                {Jazz::ShaderDataType::Float3, "a_Position"},
+                {Jazz::ShaderDataType::Float4, "a_Color"}};
         vertexBuffer->SetLayout(layout);
         m_VertexArray->AddVertexBuffer(vertexBuffer);
 
         uint32_t indices[3] = {0, 1, 2};
-        Jazz::Ref<Jazz::IndexBuffer> indexBuffer;
-        indexBuffer.reset(Jazz::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+        Jazz::Ref<Jazz::IndexBuffer> indexBuffer = Jazz::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
         m_VertexArray->SetIndexBuffer(indexBuffer);
 
         m_SquareVA = Jazz::VertexArray::Create();
 
         float squareVertices[5 * 4] = {
-            -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
-            0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-            0.5f, 0.5f, 0.0f, 1.0f, 1.0f,
-            -0.5f, 0.5f, 0.0f, 0.0f, 1.0f
-        };
+                -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+                0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+                0.5f, 0.5f, 0.0f, 1.0f, 1.0f,
+                -0.5f, 0.5f, 0.0f, 0.0f, 1.0f};
 
-        Jazz::Ref<Jazz::VertexBuffer> squareVB;
-        squareVB.reset(Jazz::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+        Jazz::Ref<Jazz::VertexBuffer> squareVB = Jazz::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
         squareVB->SetLayout(
-            {
-                {Jazz::ShaderDataType::Float3, "a_Position"},
-                {Jazz::ShaderDataType::Float2, "a_TexCoord"}
-            });
+                {{Jazz::ShaderDataType::Float3, "a_Position"},
+                 {Jazz::ShaderDataType::Float2, "a_TexCoord"}});
         m_SquareVA->AddVertexBuffer(squareVB);
 
         uint32_t squareIndices[6] = {0, 1, 2, 2, 3, 0};
-        Jazz::Ref<Jazz::IndexBuffer> squareIB;
-        squareIB.reset(Jazz::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+        Jazz::Ref<Jazz::IndexBuffer> squareIB = Jazz::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
         m_SquareVA->SetIndexBuffer(squareIB);
 
         std::string vertexSrc = R"(
@@ -132,8 +125,8 @@ public:
         m_Texture = Jazz::Texture2D::Create("assets/textures/Checkerboard.png");
         m_ChernoLogoTexture = Jazz::Texture2D::Create("assets/textures/ChernoLogo.png");
 
-        std::dynamic_pointer_cast<Jazz::OpenGLShader>(textureShader)->Bind();
-        std::dynamic_pointer_cast<Jazz::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
+        textureShader->Bind();
+        textureShader->SetInt("u_Texture", 0);
     }
 
     void OnUpdate(Jazz::Timestep ts) override {
@@ -148,9 +141,8 @@ public:
 
         glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-        std::dynamic_pointer_cast<Jazz::OpenGLShader>(m_FlatColorShader)->Bind();
-        std::dynamic_pointer_cast<Jazz::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color",
-                                                                                              m_SquareColor);
+        m_FlatColorShader->Bind();
+        m_FlatColorShader->SetFloat3("u_Color", m_SquareColor);
 
         for (int y = 0; y < 20; y++) {
             for (int x = 0; x < 20; x++) {

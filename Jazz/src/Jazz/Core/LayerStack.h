@@ -1,15 +1,15 @@
 #pragma once
 
-#include "Core.h"
-#include "Layer.h"
+#include "Jazz/Core/Core.h"
+#include "Jazz/Core/Layer.h"
 
 #include <vector>
 
 namespace Jazz {
 
-    class JAZZ_API LayerStack {
+    class LayerStack {
     public:
-        LayerStack();
+        LayerStack() = default;
         ~LayerStack();
 
         void PushLayer(Layer *layer);
@@ -19,9 +19,10 @@ namespace Jazz {
 
         std::vector<Layer *>::iterator begin() { return m_Layers.begin(); }
         std::vector<Layer *>::iterator end() { return m_Layers.end(); }
+
     private:
         std::vector<Layer *> m_Layers;
         unsigned int m_LayerInsertIndex = 0;
     };
 
-}
+}// namespace Jazz

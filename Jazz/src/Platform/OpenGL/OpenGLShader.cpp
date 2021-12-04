@@ -1,4 +1,4 @@
-#include "OpenGLShader.h"
+#include <Platform/OpenGL/OpenGLShader.h>
 
 #include <fstream>
 #include <glad/glad.h>
@@ -47,10 +47,15 @@ namespace Jazz {
         std::ifstream in(filepath, std::ios::in | std::ios::binary);
         if (in) {
             in.seekg(0, std::ios::end);
-            result.resize(in.tellg());
-            in.seekg(0, std::ios::beg);
-            in.read(&result[0], result.size());
-            in.close();;
+            size_t size = in.tellg();
+            if (size != -1) {
+                result.resize(size);
+                in.seekg(0, std::ios::beg);
+                in.read(&result[0], size);
+                in.close();
+            } else {
+                JZ_CORE_ERROR("Could not read from file '{0}'", filepath);
+            }
         } else {
             JZ_CORE_ERROR("Could not open file '{0}'", filepath);
         }
@@ -62,25 +67,23 @@ namespace Jazz {
         std::unordered_map<GLenum, std::string> shaderSources;
         const char *typeToken = "#type";
         size_t typeTokenLength = strlen(typeToken);
-        size_t pos = source.find(typeToken, 0); //Start of shader type declaration line
+        size_t pos = source.find(typeToken, 0);//Start of shader type declaration line
         while (pos != std::string::npos) {
-            size_t eol = source.find_first_of("\r\n", pos); //End of shader type declaration line
+            size_t eol = source.find_first_of("\r\n", pos);//End of shader type declaration line
             JZ_CORE_ASSERT(eol != std::string::npos, "Syntax error");
-            size_t begin = pos + typeTokenLength + 1; //Start of shader type name (after "#type " keyword)
+            size_t begin = pos + typeTokenLength + 1;//Start of shader type name (after "#type " keyword)
             std::string type = source.substr(begin, eol - begin);
             JZ_CORE_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
 
             size_t nextLinePos = source.find_first_not_of("\r\n",
-                                                          eol); //Start of shader code after shader type declaration line
+                                                          eol);//Start of shader code after shader type declaration line
             JZ_CORE_ASSERT(nextLinePos != std::string::npos, "Syntax error");
-            pos = source.find(typeToken, nextLinePos); //Start of next shader type declaration line
+            pos = source.find(typeToken, nextLinePos);//Start of next shader type declaration line
 
             shaderSources[ShaderTypeFromString(type)] = (pos == std::string::npos) ? source.substr(nextLinePos)
                                                                                    : source.substr(nextLinePos,
                                                                                                    pos - nextLinePos);
         }
-
-        return shaderSources;
 
         return shaderSources;
     }
@@ -211,4 +214,4 @@ namespace Jazz {
         glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
     }
 
-}
+}// namespace Jazz

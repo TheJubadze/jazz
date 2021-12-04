@@ -1,18 +1,21 @@
 #pragma once
 
-#include <src/Jazz/Core/Core.h>
+#include "Jazz/Core/Core.h"
 
-#include <src/Jazz/Core/Window.h>
-#include <src/Jazz/Core/LayerStack.h>
-#include <Events/Event.h>
-#include <Jazz/Events/ApplicationEvent.h>
-#include <Jazz/ImGui/ImGuiLayer.h>
+#include "Jazz/Core/LayerStack.h"
+#include "Jazz/Core/Window.h"
+#include "Jazz/Events/ApplicationEvent.h"
+#include "Jazz/Events/Event.h"
+
+#include "Jazz/Core/Timestep.h"
+
+#include "Jazz/ImGui/ImGuiLayer.h"
 
 namespace Jazz {
-    class JAZZ_API Application {
+    class Application {
     public:
         Application();
-        virtual ~Application() = default;
+        virtual ~Application();
 
         void Run();
 
@@ -24,9 +27,10 @@ namespace Jazz {
         inline Window &GetWindow() { return *m_Window; }
 
         inline static Application &Get() { return *s_Instance; }
+
     private:
         bool OnWindowClose(WindowCloseEvent &e);
-        bool OnWindowResize(WindowResizeEvent& e);
+        bool OnWindowResize(WindowResizeEvent &e);
 
         std::unique_ptr<Window> m_Window;
         ImGuiLayer *m_ImGuiLayer;
@@ -41,4 +45,4 @@ namespace Jazz {
 
     // To be defined in CLIENT
     Application *CreateApplication();
-}
+}// namespace Jazz

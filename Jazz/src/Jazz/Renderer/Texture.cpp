@@ -1,6 +1,5 @@
-#include "Texture.h"
-#include "Renderer.h"
-#include <Platform/OpenGL/OpenGLTexture.h>
+#include "Jazz/Renderer/Renderer.h"
+#include "Platform/OpenGL/OpenGLTexture.h"
 
 namespace Jazz {
 

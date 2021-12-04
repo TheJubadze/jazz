@@ -15,14 +15,14 @@ namespace Jazz {
         WindowProps(const std::string &title = "Jazz Engine",
                     unsigned int width = 1280,
                     unsigned int height = 720)
-                : Title(title), Width(width), Height(height) {
+            : Title(title), Width(width), Height(height) {
         }
     };
 
     // Interface representing a desktop system based Window
-    class JAZZ_API Window {
+    class Window {
     public:
-        using EventCallbackFn = std::function<void(Event & )>;
+        using EventCallbackFn = std::function<void(Event &)>;
 
         virtual ~Window() = default;
 
@@ -38,7 +38,7 @@ namespace Jazz {
 
         virtual void *GetNativeWindow() const = 0;
 
-        static Window *Create(const WindowProps &props = WindowProps());
+        static Scope<Window> Create(const WindowProps &props = WindowProps());
     };
 
-}
+}// namespace Jazz

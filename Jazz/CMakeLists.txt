@@ -1,5 +1,6 @@
 project(JazzEngine)
 
+add_subdirectory(vendor/spdlog)
 add_subdirectory(vendor/imgui)
 add_subdirectory(vendor/Glad)
 add_subdirectory(vendor/glm)
@@ -29,6 +30,7 @@ set(Sources
         src/Jazz/Renderer/OrthographicCamera.cpp
         src/Jazz/Renderer/OrthographicCameraController.cpp
         src/Jazz/Renderer/Texture.cpp
+        src/Jazz/Renderer/GraphicsContext.cpp
 
         src/Platform/Windows/WindowsWindow.cpp
         src/Platform/Windows/WindowsInput.cpp
@@ -51,6 +53,7 @@ find_package(OpenGL REQUIRED)
 
 target_link_libraries(${PROJECT_NAME}
         ${OPENGL_LIBRARIES}
+        spdlog
         glfw
         Glad
         ImGui
