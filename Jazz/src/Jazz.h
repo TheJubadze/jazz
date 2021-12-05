@@ -9,7 +9,7 @@
 
 #include "Jazz/Core/Input.h"
 #include "Jazz/Core/KeyCodes.h"
-#include "Jazz/Core/MouseButtonCodes.h"
+#include "Jazz/Core/MouseCodes.h"
 #include "Jazz/Renderer/OrthographicCameraController.h"
 
 #include <Jazz/ImGui/ImGuiLayer.h>
