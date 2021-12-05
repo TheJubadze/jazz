@@ -2,7 +2,9 @@ project(SandboxGame)
 
 add_executable(${PROJECT_NAME}
         src/SandboxGame.cpp
-        src/Sandbox2D.cpp)
+        src/Sandbox2D.cpp
+        src/ExampleLayer.cpp
+        )
 
 add_custom_command(TARGET ${PROJECT_NAME}
         POST_BUILD
