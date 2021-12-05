@@ -4,6 +4,8 @@
 #include <Platform/OpenGL/OpenGLContext.h>
 #include <Platform/Windows/WindowsWindow.h>
 
+#include "Jazz/Renderer/Renderer.h"
+
 namespace Jazz {
 
     static uint8_t s_GLFWWindowCount = 0;
@@ -46,6 +48,10 @@ namespace Jazz {
 
         {
             JZ_PROFILE_SCOPE("glfwCreateWindow");
+#if defined(HZ_DEBUG)
+            if (Renderer::GetAPI() == RendererAPI::API::OpenGL)
+                glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+#endif
             m_Window = glfwCreateWindow((int) props.Width, (int) props.Height, m_Data.Title.c_str(), nullptr, nullptr);
             ++s_GLFWWindowCount;
         }
