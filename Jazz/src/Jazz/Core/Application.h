@@ -11,13 +11,13 @@
 
 #include "Jazz/ImGui/ImGuiLayer.h"
 
+int main(int argc, char **argv);
+
 namespace Jazz {
     class Application {
     public:
         Application();
         virtual ~Application();
-
-        void Run();
 
         void OnEvent(Event &);
 
@@ -29,6 +29,7 @@ namespace Jazz {
         inline static Application &Get() { return *s_Instance; }
 
     private:
+        void Run();
         bool OnWindowClose(WindowCloseEvent &e);
         bool OnWindowResize(WindowResizeEvent &e);
 
@@ -41,6 +42,8 @@ namespace Jazz {
     private:
         static Application *s_Instance;
         float m_LastFrameTime = 0.0f;
+
+        friend int ::main(int argc, char **argv);
     };
 
     // To be defined in CLIENT
