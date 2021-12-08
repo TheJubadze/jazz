@@ -144,7 +144,7 @@ namespace Jazz {
     };
 }// namespace Jazz
 
-#define JZ_PROFILE 1
+#define JZ_PROFILE 0
 #if JZ_PROFILE
 // Resolve which function signature macro will be used. Note that this only
 // is resolved when the (pre)compiler starts, so the syntax highlighting

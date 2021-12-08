@@ -5,18 +5,26 @@
 namespace Jazz {
 
     void OpenGLMessageCallback(
-            unsigned source,
-            unsigned type,
-            unsigned id,
-            unsigned severity,
-            int length,
-            const char *message,
-            const void *userParam) {
+        unsigned source,
+        unsigned type,
+        unsigned id,
+        unsigned severity,
+        int length,
+        const char *message,
+        const void *userParam) {
         switch (severity) {
-            case GL_DEBUG_SEVERITY_HIGH: JZ_CORE_CRITICAL(message); return;
-            case GL_DEBUG_SEVERITY_MEDIUM: JZ_CORE_ERROR(message); return;
-            case GL_DEBUG_SEVERITY_LOW: JZ_CORE_WARN(message); return;
-            case GL_DEBUG_SEVERITY_NOTIFICATION: JZ_CORE_TRACE(message); return;
+            case GL_DEBUG_SEVERITY_HIGH:
+                JZ_CORE_CRITICAL(message);
+                return;
+            case GL_DEBUG_SEVERITY_MEDIUM:
+                JZ_CORE_ERROR(message);
+                return;
+            case GL_DEBUG_SEVERITY_LOW:
+                JZ_CORE_WARN(message);
+                return;
+            case GL_DEBUG_SEVERITY_NOTIFICATION:
+                JZ_CORE_TRACE(message);
+                return;
         }
 
         JZ_CORE_ASSERT(false, "Unknown severity level!");
@@ -51,9 +59,9 @@ namespace Jazz {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
-    void OpenGLRendererAPI::DrawIndexed(const Ref<VertexArray> &vertexArray) {
-        glDrawElements(GL_TRIANGLES, vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+    void OpenGLRendererAPI::DrawIndexed(const Ref <VertexArray> &vertexArray, uint32_t indexCount) {
+        uint32_t count = indexCount ? indexCount : vertexArray->GetIndexBuffer()->GetCount();
+        glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, nullptr);
         glBindTexture(GL_TEXTURE_2D, 0);
     }
-
 }// namespace Jazz
