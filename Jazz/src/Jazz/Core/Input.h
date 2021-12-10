@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Jazz/Core/Core.h"
+#include "Jazz/Core/Base.h"
 #include "Jazz/Core/KeyCodes.h"
 #include "Jazz/Core/MouseCodes.h"
 

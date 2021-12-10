@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "Jazz/Core/Core.h"
+#include "Jazz/Core/Base.h"
 
 namespace Jazz {
 

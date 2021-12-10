@@ -1,7 +1,7 @@
 #pragma once
 
 //For use by Jazz applications
-#include "Jazz/Core/Core.h"
+#include "Jazz/Core/Base.h"
 
 #include "Jazz/Core/Application.h"
 #include "Jazz/Core/Layer.h"

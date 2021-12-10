@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Jazz/Core/Core.h"
+#include "Jazz/Core/Base.h"
 
 #include <spdlog/fmt/ostr.h>
 #include <spdlog/spdlog.h>

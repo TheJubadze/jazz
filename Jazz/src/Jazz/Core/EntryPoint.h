@@ -1,5 +1,5 @@
 #pragma once
-#include "Jazz/Core/Core.h"
+#include "Jazz/Core/Base.h"
 
 #ifdef JZ_PLATFORM_WINDOWS
 
