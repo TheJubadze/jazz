@@ -14,38 +14,40 @@
 int main(int argc, char **argv);
 
 namespace Jazz {
-    class Application {
-    public:
-        Application();
-        virtual ~Application();
+class Application {
+ public:
+  Application();
+  virtual ~Application();
 
-        void OnEvent(Event &);
+  void OnEvent(Event &);
 
-        void PushLayer(Layer *layer);
-        void PushOverlay(Layer *layer);
+  void PushLayer(Layer *layer);
+  void PushOverlay(Layer *layer);
 
-        inline Window &GetWindow() { return *m_Window; }
+  inline Window &GetWindow() { return *m_Window; }
 
-        inline static Application &Get() { return *s_Instance; }
+  void Close();
 
-    private:
-        void Run();
-        bool OnWindowClose(WindowCloseEvent &e);
-        bool OnWindowResize(WindowResizeEvent &e);
+  inline static Application &Get() { return *s_Instance; }
 
-        std::unique_ptr<Window> m_Window;
-        ImGuiLayer *m_ImGuiLayer;
-        bool m_Running = true;
-        bool m_Minimized = false;
-        LayerStack m_LayerStack;
+ private:
+  void Run();
+  bool OnWindowClose(WindowCloseEvent &e);
+  bool OnWindowResize(WindowResizeEvent &e);
 
-    private:
-        static Application *s_Instance;
-        float m_LastFrameTime = 0.0f;
+  std::unique_ptr<Window> m_Window;
+  ImGuiLayer *m_ImGuiLayer;
+  bool m_Running = true;
+  bool m_Minimized = false;
+  LayerStack m_LayerStack;
 
-        friend int ::main(int argc, char **argv);
-    };
+ private:
+  static Application *s_Instance;
+  float m_LastFrameTime = 0.0f;
 
-    // To be defined in CLIENT
-    Application *CreateApplication();
+  friend int::main(int argc, char **argv);
+};
+
+// To be defined in CLIENT
+Application *CreateApplication();
 }// namespace Jazz

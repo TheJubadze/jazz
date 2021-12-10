@@ -44,6 +44,10 @@ void Application::PushOverlay(Layer *layer) {
   layer->OnAttach();
 }
 
+void Application::Close() {
+  m_Running = false;
+}
+
 void Application::OnEvent(Event &e) {
   JZ_PROFILE_FUNCTION();
 
@@ -52,9 +56,9 @@ void Application::OnEvent(Event &e) {
   dispatcher.Dispatch<WindowResizeEvent>(JZ_BIND_EVENT_FN(Application::OnWindowResize));
 
   for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it) {
-    if (e.Handled)
-      break;
-    (*it)->OnEvent(e);
+	if (e.Handled)
+	  break;
+	(*it)->OnEvent(e);
   }
 }
 
@@ -62,31 +66,31 @@ void Application::Run() {
   JZ_PROFILE_FUNCTION();
 
   while (m_Running) {
-    JZ_PROFILE_SCOPE("RunLoop");
+	JZ_PROFILE_SCOPE("RunLoop");
 
-    float time = (float) glfwGetTime();
-    Timestep timestep = time - m_LastFrameTime;
-    m_LastFrameTime = time;
+	float time = (float)glfwGetTime();
+	Timestep timestep = time - m_LastFrameTime;
+	m_LastFrameTime = time;
 
-    if (!m_Minimized) {
-      {
-        JZ_PROFILE_SCOPE("LayerStack OnUpdate");
+	if (!m_Minimized) {
+	  {
+		JZ_PROFILE_SCOPE("LayerStack OnUpdate");
 
-        for (Layer *layer : m_LayerStack)
-          layer->OnUpdate(timestep);
-      }
+		for (Layer *layer : m_LayerStack)
+		  layer->OnUpdate(timestep);
+	  }
 
-      m_ImGuiLayer->Begin();
-      {
-        JZ_PROFILE_SCOPE("LayerStack OnImGuiRender");
+	  m_ImGuiLayer->Begin();
+	  {
+		JZ_PROFILE_SCOPE("LayerStack OnImGuiRender");
 
-        for (Layer *layer : m_LayerStack)
-          layer->OnImGuiRender();
-      }
-      m_ImGuiLayer->End();
-    }
+		for (Layer *layer : m_LayerStack)
+		  layer->OnImGuiRender();
+	  }
+	  m_ImGuiLayer->End();
+	}
 
-    m_Window->OnUpdate();
+	m_Window->OnUpdate();
   }
 }
 
@@ -99,8 +103,8 @@ bool Application::OnWindowResize(WindowResizeEvent &e) {
   JZ_PROFILE_FUNCTION();
 
   if (e.GetWidth() == 0 || e.GetHeight() == 0) {
-    m_Minimized = true;
-    return false;
+	m_Minimized = true;
+	return false;
   }
 
   m_Minimized = false;
