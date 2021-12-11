@@ -33,6 +33,7 @@ set(Sources
         src/Jazz/Renderer/OrthographicCameraController.cpp
         src/Jazz/Renderer/Texture.cpp
         src/Jazz/Renderer/GraphicsContext.cpp
+        src/Jazz/Renderer/Framebuffer.cpp
 
         src/Platform/Windows/WindowsWindow.cpp
         src/Platform/Windows/WindowsInput.cpp
@@ -43,6 +44,7 @@ set(Sources
         src/Platform/OpenGL/OpenGLRendererAPI.cpp
         src/Platform/OpenGL/OpenGLShader.cpp
         src/Platform/OpenGL/OpenGLTexture.cpp
+        src/Platform/OpenGL/OpenGLFramebuffer.cpp
 
         vendor/stb_image/stb_image.cpp
         )

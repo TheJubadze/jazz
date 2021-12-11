@@ -45,7 +45,7 @@ namespace Jazz {
 
         {
             JZ_PROFILE_SCOPE("glfwCreateWindow");
-#if defined(HZ_DEBUG)
+#if defined(JZ_DEBUG)
             if (Renderer::GetAPI() == RendererAPI::API::OpenGL)
                 glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
 #endif

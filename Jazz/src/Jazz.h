@@ -21,6 +21,7 @@
 
 #include "Jazz/Renderer/Buffer.h"
 #include "Jazz/Renderer/Shader.h"
+#include "Jazz/Renderer/Framebuffer.h"
 #include "Jazz/Renderer/Texture.h"
 #include "Jazz/Renderer/VertexArray.h"
 
