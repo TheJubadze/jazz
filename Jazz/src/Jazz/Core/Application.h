@@ -16,7 +16,7 @@ int main(int argc, char **argv);
 namespace Jazz {
 class Application {
  public:
-  Application();
+  Application(const std::string& name = "Jazz App");
   virtual ~Application();
 
   void OnEvent(Event &);

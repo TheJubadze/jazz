@@ -20,8 +20,7 @@ class Sandbox2D : public Jazz::Layer {
   // Temp
   Jazz::Ref<Jazz::VertexArray> m_SquareVA;
   Jazz::Ref<Jazz::Shader> m_FlatColorShader;
-  Jazz::Ref<Jazz::Framebuffer> m_Framebuffer;
-	
+
   Jazz::Ref<Jazz::Texture2D> m_CheckerboardTexture;
 
   glm::vec4 m_SquareColor = {0.2f, 0.3f, 0.8f, 1.0f};
