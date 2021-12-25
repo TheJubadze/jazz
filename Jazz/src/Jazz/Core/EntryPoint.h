@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
     app->Run();
     JZ_PROFILE_END_SESSION();
 
-    JZ_PROFILE_BEGIN_SESSION("Startup", "JazzProfile-Shutdown.json");
+    JZ_PROFILE_BEGIN_SESSION("Shutdown", "JazzProfile-Shutdown.json");
     delete app;
     JZ_PROFILE_END_SESSION();
 }
