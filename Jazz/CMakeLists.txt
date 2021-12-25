@@ -16,7 +16,6 @@ set(Sources
         src/Jazz/Core/Log.cpp
         src/Jazz/Core/Layer.cpp
         src/Jazz/Core/LayerStack.cpp
-        src/Jazz/Core/Input.cpp
         src/Jazz/Core/Window.cpp
 
         src/Jazz/ImGui/ImGuiBuild.cpp
