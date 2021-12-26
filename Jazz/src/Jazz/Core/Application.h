@@ -16,7 +16,7 @@ int main(int argc, char **argv);
 namespace Jazz {
 class Application {
  public:
-  Application(const std::string& name = "Jazz App");
+  Application(const std::string &name = "Jazz App");
   virtual ~Application();
 
   void OnEvent(Event &);
@@ -27,6 +27,8 @@ class Application {
   inline Window &GetWindow() { return *m_Window; }
 
   void Close();
+
+  ImGuiLayer *GetImGuiLayer() { return m_ImGuiLayer; }
 
   inline static Application &Get() { return *s_Instance; }
 
